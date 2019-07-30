@@ -13,3 +13,5 @@
 
 Route::get('/', 'TodoListController@index');
 Route::post('/todo/create', 'TodoListController@create');
+
+Route::delete('/todo/delete/{todoId}', 'TodoListController@delete');

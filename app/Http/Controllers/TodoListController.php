@@ -32,12 +32,17 @@ class TodoListController extends Controller
         $validator = Validator::make($inputData, $rules, $errorMessages);
     
         if ($validator->fails()) {
-            // return response()->json(['error' => $validator->errors()->getMessages()], 400);
             return redirect()->back()->withErrors($validator)->withInput()->with('status', 'fail');
         }
 
         $todoItem = TodoList::create($inputData);
 
         return redirect('/')->with('status', 'success');
+    }
+
+    public function delete($todoId) {
+        $todo = TodoList::find($todoId)->delete();
+
+        return response()->json(['message' => 'success'], 200);
     }
 }
