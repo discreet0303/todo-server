@@ -6,69 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todo List</title>
     <link rel="stylesheet" href="{{ asset('/css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <script src="{{ asset('/js/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('/js/jquery-3.4.1.min.js') }}"></script>
-    <style>
-        * {
-            font-family: '微軟正黑體'
-        }
 
-        body { 
-            display: flex;
-            justify-content: center;
-        }
-        
-        .container {
-            margin-top: 20px; 
-            min-height: 400px;
-            min-width: 400px;
-        }
-        
-        .todo-title {
-            background: black;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            padding: 5px;
-            margin: 0;
-        }
-        .todo-add-item {
-            display: flex;
-        }
-        .todo-add-item > input {
-            flex: 10;
-            padding: 5px;
-        }
-
-        .todo-add-item > button {
-            display: inline-block;
-            border: none;
-            background: #555;
-            color: #fff;
-            padding: 7px 20px;
-            cursor: pointer;
-        }
-
-        .todo-list {
-            border: 2px solid;
-            min-height: 400px;
-        }
-
-        .todo-item {
-            border-bottom: 1px solid gray;
-            padding: 5px;
-        }
-
-        .todo-del-bt {
-            float: right;
-            border-radius: 50%;
-            background: red;
-            border: 1px solid red;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -92,6 +33,13 @@
     </div>
 
     <script>
+        $(document).ready(function(){
+            $("input[type=checkbox]").change(function() {
+                parentEle = $(this).parent();
+                if(this.checked) parentEle.css('text-decoration', 'line-through');
+                else parentEle.css('text-decoration', 'none');
+            });
+        });
         function delTodo(todoId) {
             $.ajax({
                 type: 'DELETE',
